@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eleições</title>
+    <link rel="stylesheet" href="votos.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Eleições 2024</h1>
+      <h4>Escolha do Primeiro Ministro de Portuga</h4>
+      <div id="votacao">
+        <label for="voto">Digite o partido em que deseja votar:</label>
+        <input type="text" id="voto" name="voto" />
+        <button onclick="votar()">Votar</button>
+      </div>
+      <div id="resultado">
+        <div id="resultadoContent"></div>
+      </div>
+    </div>
+    <script src="votos.js"></script>
+  </body>
+</html>

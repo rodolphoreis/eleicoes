@@ -5,16 +5,9 @@ let il = [];
 let be = [];
 let pcp = [];
 let l = [];
-let nulo = [];
 
-while (true) {
-  let voto = prompt("Qual é o seu voto?");
-
-  alert("Seu voto foi:" + " " + voto);
-
-  if (voto.toLowerCase() === "fim") {
-    break;
-  }
+function votar() {
+  let voto = document.getElementById("voto").value.toLowerCase();
 
   switch (voto) {
     case "ps":
@@ -38,21 +31,44 @@ while (true) {
     case "l":
       l.push(voto);
       break;
-    case "nulo":
-      nulo.push(voto);
-      break;
 
     default:
-      console.log(
-        "Opção inválida. Por favor tente outro partido ou vote nulo."
-      );
+      alert("Opção inválida. Por favor, tente outro partido ou vote nulo.");
+      return;
+  }
+
+  document.getElementById("voto").value = "";
+  document.getElementById("voto").disabled = true;
+
+  exibirResultado();
+}
+
+function exibirResultado() {
+  let resultadoContent = document.getElementById("resultadoContent");
+  resultadoContent.innerHTML = "";
+
+  let resultados = [
+    { partido: "PS", votos: ps.length },
+    { partido: "PSD", votos: psd.length },
+    { partido: "CH", votos: ch.length },
+    { partido: "IL", votos: il.length },
+    { partido: "BE", votos: be.length },
+    { partido: "PCP", votos: pcp.length },
+    { partido: "L", votos: l.length },
+  ];
+
+  resultados.sort((a, b) => b.votos - a.votos);
+
+  let resultadosHTML = "";
+  resultados.forEach((resultado) => {
+    resultadosHTML += `<p>Número de votos para o ${resultado.partido}: ${resultado.votos}</p>`;
+  });
+
+  resultadoContent.innerHTML = resultadosHTML;
+
+  if (resultados.some((resultado) => resultado.votos > 0)) {
+    document.getElementById("resultado").style.display = "block";
+  } else {
+    document.getElementById("resultado").style.display = "none";
   }
 }
-console.log("Número de votos para o PS:", ps.length);
-console.log("Número de votos para o PSD:", psd.length);
-console.log("Número de votos para o CH:", ch.length);
-console.log("Número de votos para o il:", il.length);
-console.log("Número de votos para o BE:", be.length);
-console.log("Número de votos para o PCP:", pcp.length);
-console.log("Número de votos para o L:", l.length);
-console.log("Número de votos nulos:", nulo.length);
